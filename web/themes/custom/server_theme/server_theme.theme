@@ -245,6 +245,12 @@ function server_theme_theme() {
     'variables' => [],
   ];
 
+  $info['node_group'] = [
+    'variables' => [
+      'content' => NULL,
+    ],
+  ];
+
   return $info;
 }
 

@@ -1,0 +1,19 @@
+<div class="person-card font-inter">
+  {{ dpm(image) }}
+  <div class="rounded-full">
+    <img src="{{ image['#uri'] }}" {{ attributes.addClass('rounded-full') }}/>
+  </div>
+  <div class="name">
+    {{ name }}
+  </div>
+  <div class="position">
+    {{ position }}
+  </div>
+  <div class="rounded-full">
+    {{ role }}
+  </div>
+  <div class="grid grid-cols-2 gap-2">
+    {{ email }}
+    {{ phone }}
+  </div>
+</div>
