@@ -4,6 +4,7 @@ namespace Drupal\starter_custom\Controller;
 
 use Drupal\server_style_guide\Controller\StyleGuideController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Url;
 
 /**
  * Provides route responses for the Style Guide pag2e.
@@ -33,7 +34,7 @@ class CustomStyleGuideController extends StyleGuideController {
       if (isset($row['#title'])) {
         if ($row['#title']['#unique_id'] == 'tags') {
           $elements[] = $this->wrapElementWideContainer($this->getPersonCard(), 'Person card');
-          ;
+          $elements[] = $this->wrapElementWideContainer($this->getPersonCards(), 'Person cards');
         }
       }
     }
@@ -57,11 +58,38 @@ class CustomStyleGuideController extends StyleGuideController {
       '#name' => 'Jane Cooper',
       '#position' => 'Paradigm Representative',
       '#role' => 'Admin',
-      '#email' => 'admin@example.com',
-      '#phone' => '+11 111 111 11 11',
+      '#email' => [
+        '#type' => 'link',
+        '#title' => $this->t('Email'),
+        '#url' => Url::fromUri('mailto:admin@example.com'),
+      ],
+      '#phone' => [
+        '#type' => 'link',
+        '#title' => $this->t('Call'),
+        '#url' => Url::fromUri('tel:+11 111 111 11 11'),
+      ],
     ];
 
     return $card;
+  }
+
+  /**
+   * Get Person cards.
+   *
+   * @return array
+   *   Render array.
+   */
+  protected function getPersonCards(): array {
+    $cards = [];
+    $card = $this->getPersonCard();
+    for ($a = 0; $a < 10; $a++) {
+      $cards[] = $card;
+    }
+
+    return [
+      '#theme' => 'server_theme_person_cards',
+      '#cards' => $cards,
+    ];
   }
 
 }

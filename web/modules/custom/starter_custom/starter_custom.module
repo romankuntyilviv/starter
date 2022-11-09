@@ -28,5 +28,11 @@ function starter_custom_theme() {
     ],
   ];
 
+  $info['server_theme_person_cards'] = [
+    'variables' => [
+      'cards' => NULL,
+    ],
+  ];
+
   return $info;
 }

@@ -9,7 +9,7 @@ module.exports = {
     },
     fontFamily: {
       'headers': ["Roboto", 'sans-serif'],
-      'body': ["Open Sans", 'sans-serif'],
+      'body': ["Inter var", 'sans-serif'],
     }
   },
   content: [
